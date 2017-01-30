@@ -5,6 +5,8 @@ import store from './store/index';
 
 import Stopwatch from './containers/stopwatch';
 
+console.log(store);
+
 const rootElement = document.getElementById('app');
 
 ReactDOM.render(
