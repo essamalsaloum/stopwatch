@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { startTimer, stopTimer, saveTime, clearTime } from '../actions/stopwatch'
 import { _formatTime } from '../helpers/stopwatch'
 
+import Button from '../components/button'
+
 require('./stopwatch.css')
 
 class Stopwatch extends Component {
@@ -47,10 +49,10 @@ class Stopwatch extends Component {
     return (
       <div className='stopwatch'>
         <h1 className='stopwatch__time'>{_formatTime(secondsElapsed)}</h1>
-        <button className='stopwatch__btn' onClick={this._handleClickStart} disabled={recording}>start</button>
-        <button className='stopwatch__btn' onClick={this._handleClickStop} disabled={!recording}>stop</button>
-        <button className='stopwatch__btn' onClick={this._handleClickSave}>save</button>
-        <button className='stopwatch__btn' onClick={this._handleClickClear}>clear</button>
+        <Button onClick={this._handleClickStart} disabled={recording} text='start' />
+        <Button onClick={this._handleClickStop} disabled={!recording} text='stop' />
+        <Button onClick={this._handleClickSave} text='save' />
+        <Button onClick={this._handleClickClear} text='clear' />
         <ul className='stopwatch__laps'>{laps}</ul>
       </div>
     )
