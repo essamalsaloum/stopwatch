@@ -1,8 +1,16 @@
-export const UPDATE_SECONDS = 'UPDATE_SECONDS';
+export const START_TIMER = 'START_TIMER';
 
-export function updateSeconds () {
+export function startTimer () {
   return {
-    type: UPDATE_SECONDS
+    type: START_TIMER
+  };
+}
+
+export const STOP_TIMER = 'STOP_TIMER';
+
+export function stopTimer () {
+  return {
+    type: STOP_TIMER
   };
 }
 

@@ -1,4 +1,5 @@
-import { UPDATE_SECONDS, SAVE_TIME } from '../actions/stopwatch';
+import { START_TIMER, STOP_TIMER, SAVE_TIME } from '../actions/stopwatch';
+import { _formatTime } from '../helpers/stopwatch';
 
 const initialState = {
   recording: false,
@@ -6,23 +7,40 @@ const initialState = {
   savedTimes: []
 };
 
-function updateSeconds (state) {
+function startTimer (state) {
   if (typeof state.secondsElapsed !== 'number') {
     return;
   }
 
   const addedSecond = state.secondsElapsed + 1;
 
-  return Object.assign({}, state, {secondsElapsed: addedSecond});
+  return Object.assign({}, state, {recording: true, secondsElapsed: addedSecond});
 };
+
+function stopTimer (state) {
+  return Object.assign({}, state, {recording: false});
+}
+
+function saveTime (state) {
+  if (typeof state.secondsElapsed !== 'number') {
+    return;
+  }
+
+  const newLap = _formatTime(state.secondsElapsed);
+
+  return Object.assign({}, state, {savedTimes: state.savedTimes.concat(newLap)});
+}
 
 export default function stopwatch (state = initialState, action = {}) {
   switch (action.type) {
-    case UPDATE_SECONDS:
-      return updateSeconds(state);
+    case START_TIMER:
+      return startTimer(state);
+
+    case STOP_TIMER:
+      return stopTimer(state);
 
     case SAVE_TIME:
-      return state;
+      return saveTime(state);
 
     default:
       return state;

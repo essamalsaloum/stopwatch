@@ -1,40 +1,44 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { updateSeconds, saveTime } from '../actions/stopwatch';
 
-function _formatTime (secondsElapsed) {
-  const minute  = Math.floor(secondsElapsed / 60);
-  const seconds = ('0' + secondsElapsed % 60).slice(-2);
-
-  return minute + ':' + seconds;
-}
+import { startTimer, stopTimer, saveTime } from '../actions/stopwatch';
+import { _formatTime } from '../helpers/stopwatch';
 
 class Stopwatch extends React.Component {
   constructor (props) {
     super(props);
     this._handleClickStart = this._handleClickStart.bind(this);
     this._handleClickStop  = this._handleClickStop.bind(this);
+    this._handleClickSave  = this._handleClickSave.bind(this);
     this.counter           = null;
   }
 
   _handleClickStart () {
+    if (this.props.recording === true) {
+      return;
+    }
+
     this.counter = setInterval(this.props.onStartClick, 1000);
-  };
+  }
 
   _handleClickStop () {
     clearInterval(this.counter);
-  };
+    this.props.onStopClick();
+  }
+
+  _handleClickSave () {
+    this.props.onSaveClick();
+  }
 
   render() {
-    console.log(this);
-    const { onStartClick, secondsElapsed } = this.props;
+    const { secondsElapsed } = this.props;
 
     return (
       <div>
         <h1>{_formatTime(secondsElapsed)}</h1>
         <button onClick={this._handleClickStart}>start</button>
         <button onClick={this._handleClickStop}>stop</button>
-        <button>save</button>
+        <button onClick={this._handleClickSave}>save</button>
       </div>
     )
   }
@@ -53,10 +57,13 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onStartClick: () => {
-      dispatch(updateSeconds())
+      dispatch(startTimer())
     },
     onSaveClick: () => {
       dispatch(saveTime())
+    },
+    onStopClick: () => {
+      dispatch(stopTimer())
     }
   }
 };
