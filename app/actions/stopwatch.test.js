@@ -1,6 +1,6 @@
 import {
-  startTimer, stopTimer, saveTime,
-  START_TIMER, STOP_TIMER, SAVE_TIME
+  startTimer, stopTimer, saveTime, clearTime,
+  START_TIMER, STOP_TIMER, SAVE_TIME, CLEAR_TIME
 } from './stopwatch'
 
 describe('stopwatch actions', () => {
@@ -23,5 +23,12 @@ describe('stopwatch actions', () => {
       type: SAVE_TIME
     }
     expect(saveTime()).toEqual(expectedAction)
+  })
+
+  it('should fire an action to clear the current time elapsed', () => {
+    const expectedAction = {
+      type: CLEAR_TIME
+    }
+    expect(clearTime()).toEqual(expectedAction)
   })
 })

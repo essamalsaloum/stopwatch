@@ -1,4 +1,4 @@
-import { START_TIMER, STOP_TIMER, SAVE_TIME } from '../actions/stopwatch'
+import { START_TIMER, STOP_TIMER, SAVE_TIME, CLEAR_TIME } from '../actions/stopwatch'
 import { _formatTime } from '../helpers/stopwatch'
 
 const initialState = {
@@ -31,6 +31,10 @@ function saveTime (state) {
   return Object.assign({}, state, {savedTimes: state.savedTimes.concat(newLap)})
 }
 
+function clearTime (state) {
+  return Object.assign({}, state, {recording: false, secondsElapsed: 0})
+}
+
 export default function stopwatch (state = initialState, action = {}) {
   switch (action.type) {
     case START_TIMER:
@@ -41,6 +45,9 @@ export default function stopwatch (state = initialState, action = {}) {
 
     case SAVE_TIME:
       return saveTime(state)
+
+    case CLEAR_TIME:
+      return clearTime(state)
 
     default:
       return state

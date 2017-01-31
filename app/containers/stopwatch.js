@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import { startTimer, stopTimer, saveTime } from '../actions/stopwatch'
+import { startTimer, stopTimer, saveTime, clearTime } from '../actions/stopwatch'
 import { _formatTime } from '../helpers/stopwatch'
+
+require('./stopwatch.css')
 
 class Stopwatch extends Component {
   constructor (props) {
@@ -10,6 +12,7 @@ class Stopwatch extends Component {
     this._handleClickStart = this._handleClickStart.bind(this)
     this._handleClickStop = this._handleClickStop.bind(this)
     this._handleClickSave = this._handleClickSave.bind(this)
+    this._handleClickClear = this._handleClickClear.bind(this)
     this.counter = null
   }
 
@@ -30,15 +33,25 @@ class Stopwatch extends Component {
     this.props.onSaveClick()
   }
 
+  _handleClickClear () {
+    clearInterval(this.counter)
+    this.props.onClearClick()
+  }
+
   render () {
-    const { secondsElapsed } = this.props
+    const { savedTimes, secondsElapsed, recording } = this.props
+    const laps = savedTimes.map((time, index) =>
+      <li className='stopwatch__lap' key={index}>Lap {index + 1} {time}</li>
+    )
 
     return (
-      <div>
-        <h1>{_formatTime(secondsElapsed)}</h1>
-        <button onClick={this._handleClickStart}>start</button>
-        <button onClick={this._handleClickStop}>stop</button>
-        <button onClick={this._handleClickSave}>save</button>
+      <div className='stopwatch'>
+        <h1 className='stopwatch__time'>{_formatTime(secondsElapsed)}</h1>
+        <button className='stopwatch__btn' onClick={this._handleClickStart} disabled={recording}>start</button>
+        <button className='stopwatch__btn' onClick={this._handleClickStop} disabled={!recording}>stop</button>
+        <button className='stopwatch__btn' onClick={this._handleClickSave}>save</button>
+        <button className='stopwatch__btn' onClick={this._handleClickClear}>clear</button>
+        <ul className='stopwatch__laps'>{laps}</ul>
       </div>
     )
   }
@@ -50,7 +63,8 @@ Stopwatch.propTypes = {
   savedTimes: PropTypes.array.isRequired,
   onStartClick: PropTypes.func.isRequired,
   onStopClick: PropTypes.func.isRequired,
-  onSaveClick: PropTypes.func.isRequired
+  onSaveClick: PropTypes.func.isRequired,
+  onClearClick: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => {
@@ -73,6 +87,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onStopClick: () => {
       dispatch(stopTimer())
+    },
+    onClearClick: () => {
+      dispatch(clearTime())
     }
   }
 }

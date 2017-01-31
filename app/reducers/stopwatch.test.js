@@ -1,5 +1,5 @@
 import reducer from './stopwatch'
-import { START_TIMER, STOP_TIMER, SAVE_TIME } from '../actions/stopwatch'
+import { START_TIMER, STOP_TIMER, SAVE_TIME, CLEAR_TIME } from '../actions/stopwatch'
 
 const initialState = {
   recording: false,
@@ -70,6 +70,22 @@ describe('stopwatch reducer', () => {
         recording: true,
         secondsElapsed: 156,
         savedTimes: ['2:14', '2:36']
+      }
+    )
+  })
+
+  it('should reset current elapsed time', () => {
+    expect(
+      reducer({
+        recording: true,
+        secondsElapsed: 156,
+        savedTimes: ['2:14']
+      }, {type: CLEAR_TIME})
+    ).toEqual(
+      {
+        recording: false,
+        secondsElapsed: 0,
+        savedTimes: ['2:14']
       }
     )
   })
