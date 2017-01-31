@@ -1,8 +1,8 @@
-import { applyMiddleware, createStore } from 'redux';
-import logger from 'redux-logger';
+import { applyMiddleware, createStore } from 'redux'
+import logger from 'redux-logger'
 
-import reducer from '../reducers/stopwatch';
+import reducer from '../reducers/stopwatch'
 
-const middleware = applyMiddleware(logger());
+const middleware = applyMiddleware(logger())
 
-export default createStore(reducer, middleware);
+export default createStore(reducer, middleware)

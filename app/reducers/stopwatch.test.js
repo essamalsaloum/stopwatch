@@ -1,11 +1,11 @@
-import reducer from './stopwatch';
-import { START_TIMER, STOP_TIMER, SAVE_TIME } from '../actions/stopwatch';
+import reducer from './stopwatch'
+import { START_TIMER, STOP_TIMER, SAVE_TIME } from '../actions/stopwatch'
 
 const initialState = {
   recording: false,
   secondsElapsed: 0,
   savedTimes: []
-};
+}
 
 describe('stopwatch reducer', () => {
   it('should return the initial state', () => {
@@ -73,4 +73,4 @@ describe('stopwatch reducer', () => {
       }
     )
   })
-});
+})

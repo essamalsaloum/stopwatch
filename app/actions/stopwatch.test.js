@@ -1,8 +1,9 @@
-import { startTimer, stopTimer, saveTime } from './stopwatch';
-import { START_TIMER, STOP_TIMER, SAVE_TIME } from './stopwatch';
+import {
+  startTimer, stopTimer, saveTime,
+  START_TIMER, STOP_TIMER, SAVE_TIME
+} from './stopwatch'
 
 describe('stopwatch actions', () => {
-
   it('should fire an action to start the stopwatch timer', () => {
     const expectedAction = {
       type: START_TIMER

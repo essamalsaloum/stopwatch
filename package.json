@@ -4,7 +4,7 @@
   "description": "Test for Signal Noise interview",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "standard --verbose | snazzy && jest",
     "webpack": "rimraf dist/ && webpack",
     "dev": "webpack-dev-server"
   },
@@ -22,6 +22,7 @@
     "jest": "18.1.0",
     "redux-logger": "2.7.4",
     "rimraf": "2.5.4",
+    "snazzy": "^6.0.0",
     "standard": "8.6.0",
     "webpack-dev-server": "1.16.2"
   },
@@ -32,5 +33,12 @@
     "redux": "3.6.0",
     "redux-thunk": "2.2.0",
     "webpack": "2.2.0"
+  },
+  "standard": {
+    "globals": [
+      "it",
+      "expect",
+      "describe"
+    ]
   }
 }

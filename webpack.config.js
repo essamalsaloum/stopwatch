@@ -1,8 +1,7 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require('path')
 
-const sourcePath = path.resolve(__dirname, './app');
-const outputPath = path.resolve(__dirname, './dist');
+const sourcePath = path.resolve(__dirname, './app')
+const outputPath = path.resolve(__dirname, './dist')
 
 module.exports = {
   context: sourcePath,
@@ -27,4 +26,4 @@ module.exports = {
     contentBase: './app',
     port: 3000
   }
-};
+}
