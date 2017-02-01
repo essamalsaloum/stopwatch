@@ -1,5 +1,21 @@
 # Stopwatch
 
+A simple stopwatch app.
+
+## Features
+- Display time
+- Start timer
+- Stop timer
+- Clear timer
+- Save time (laps)
+
+## Built With
+- ES6 (Transpiled by Babel)
+- React
+- Redux
+- Webpack 2
+- Jest (Testing)
+
 ## Install Dependencies
 run `npm install`
 
