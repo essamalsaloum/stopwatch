@@ -5,10 +5,11 @@ import { startTimer, stopTimer, saveTime, clearTime } from '../actions/stopwatch
 import { _formatTime } from '../helpers/stopwatch'
 
 import Button from '../components/button'
+import LapTimes from '../components/laptimes'
 
 require('./stopwatch.css')
 
-class Stopwatch extends Component {
+export class Stopwatch extends Component {
   constructor (props) {
     super(props)
     this._handleClickStart = this._handleClickStart.bind(this)
@@ -42,9 +43,6 @@ class Stopwatch extends Component {
 
   render () {
     const { savedTimes, secondsElapsed, recording } = this.props
-    const laps = savedTimes.map((time, index) =>
-      <li className='stopwatch__lap' key={index}>Lap {index + 1} {time}</li>
-    )
 
     return (
       <div className='stopwatch'>
@@ -53,7 +51,7 @@ class Stopwatch extends Component {
         <Button onClick={this._handleClickStop} disabled={!recording} text='stop' />
         <Button onClick={this._handleClickSave} text='save' />
         <Button onClick={this._handleClickClear} text='clear' />
-        <ul className='stopwatch__laps'>{laps}</ul>
+        {savedTimes.length > 0 && <LapTimes times={savedTimes} />}
       </div>
     )
   }
