@@ -1,3 +1,6 @@
+/*
+** Resets
+*/
 * {
   box-sizing: border-box;
 }
@@ -19,48 +22,81 @@ ul {
   list-style-type: none;
 }
 
+/*
+** Stopwatch container
+*/
 .stopwatch {
-  border: 1px solid red;
-
-  width: 50%;
-  margin: 0 auto;
+  width: 90%;
+  margin: 50px auto 0;
   padding: 1em;
   text-align: center;
+  border-radius: 5px;
+  background-color: #336E7B;
+  color: #fff;
 }
 
-.stopwatch__time {
-  border: 1px solid green;
+@media (min-width: 720px) {
+  .stopwatch {
+    width: 50%;
+  }
+}
 
+/*
+** Stopwatch time
+*/
+.stopwatch__time {
   margin-bottom: .5em;
   font-size: 50px;
 }
 
+/*
+** Stopwatch button
+*/
 .stopwatch__btn {
-  position: relative;
-  width: 15%;
+  display: block;
+  width: 100%;
   padding: 1em 0;
+  margin-bottom: .8em;
   text-transform: uppercase;
   font-weight: bold;
-  border: 1px solid #333;
+  color: inherit;
+  border: 2px solid #fff;
   border-radius: .2em;
   background-color: transparent;
-}
-
-.stopwatch__btn + .stopwatch__btn {
-  margin-left: .3em;
 }
 
 .stopwatch__btn:hover,
 .stopwatch__btn:focus {
   cursor: pointer;
-  background-color: #bdc3c7;
+  background-color: #408B9C;
 }
 
 .stopwatch__btn:disabled {
   cursor: auto;
   background-color: transparent;
+  border: 2px solid #34495E;
+  color: #ABB7B7;
 }
 
+@media (min-width: 720px) {
+  .stopwatch__btn {
+    display: inline-block;
+    width: 20%;
+    margin-bottom: 0;
+  }
+
+  .stopwatch__btn + .stopwatch__btn {
+    margin-left: 1em;
+  }
+}
+
+/*
+** Stopwatch lap times
+*/
 .stopwatch__laps {
   margin-top: 1em;
+}
+
+.stopwatch__lap {
+  margin-bottom: 10px;
 }
