@@ -1,7 +1,7 @@
 {
-  "name": "signal_noise_test",
+  "name": "stopwatch",
   "version": "1.0.0",
-  "description": "Test for Signal Noise interview",
+  "description": "Simple stopwatch",
   "main": "index.js",
   "scripts": {
     "test": "standard --verbose | snazzy && jest",
@@ -23,7 +23,7 @@
     "jest": "18.1.0",
     "redux-logger": "2.7.4",
     "rimraf": "2.5.4",
-    "snazzy": "^6.0.0",
+    "snazzy": "6.0.0",
     "standard": "8.6.0",
     "style-loader": "0.13.1",
     "webpack-dev-server": "1.16.2"
